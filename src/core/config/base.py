@@ -27,6 +27,7 @@ THEME = [
 APPS = [
     'account',
     'profiles',
+    'meditation',
 
 ]
 
