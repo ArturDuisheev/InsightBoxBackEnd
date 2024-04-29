@@ -28,6 +28,7 @@ APPS = [
     'account',
     'profiles',
     'meditation',
+    'ads',
 
 ]
 

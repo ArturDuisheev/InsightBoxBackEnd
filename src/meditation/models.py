@@ -60,3 +60,7 @@ class Meditation(models.Model):
     def __str__(self):
         is_prem = 'Да' if self.is_premium else 'нет'
         return f'название: {self.title}, премиум? {is_prem}'
+    
+    class Meta:
+        verbose_name = _('Медитация')
+        verbose_name_plural = _('Медитации')

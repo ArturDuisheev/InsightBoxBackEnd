@@ -9,6 +9,7 @@ from core.drf_yasg import urlpatterns as urls_swagger
 api_v1_patterns = [
     path('profile/', include('profiles.urls')),
     path('meditation/', include('meditation.urls')),
+    path('ads/', include('ads.urls')),
 
 ]
 
