@@ -1,10 +1,11 @@
+from core.config.helper.env_reader import env
 
 """BEGIN PAYMENT DATA"""
-api_url: str = 'https://securepay.tinkoff.ru/v2/' #TODO: поместить в .env
+api_url: str = env('TINKOFF_URL_API') #TODO: поместить в .env
 
-terminal_key = '1693924570978DEMO'
+terminal_key = env('TINKOFF_TERMINAL_KEY')
 
-terminal_password = 'r648vd0pmclgj2kd'
+terminal_password = env('TINKOFF_TERMINAL_PASSWORD')
 
 payment_data: dict = {
     'TerminalKey': terminal_key,
