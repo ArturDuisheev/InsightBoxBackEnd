@@ -7,13 +7,15 @@ terminal_key = env('TINKOFF_TERMINAL_KEY')
 
 terminal_password = env('TINKOFF_TERMINAL_PASSWORD')
 
+merchant_token = env('TINKOFF_MERCHANT_TOKEN')
+
 payment_data: dict = {
     'TerminalKey': terminal_key,
     'Password': terminal_password,
     'Amount': 13,
     'OrderId': '123',
     'Description': 'Payment request test',
-    'Token': None,
+    'Token': merchant_token,
     'DATA': {
         "Phone": "+71234567890",
         "Email": "a@test.com"
