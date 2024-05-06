@@ -1,7 +1,11 @@
+from rest_framework import serializers
+
 from djoser.serializers import UserCreateSerializer as BaseUserRegistrationSerializer
 
 from rest_framework_simplejwt.serializers import TokenObtainSerializer, api_settings, update_last_login
 from rest_framework_simplejwt.tokens import RefreshToken
+
+from account import models as acc_mod
 
 
 class UserRegistrationSerializer(BaseUserRegistrationSerializer):
@@ -27,5 +31,9 @@ class CustomTokenObtainPairSerializer(TokenObtainSerializer):
             update_last_login(None, self.user)
 
         return data
-    
 
+
+class ContactSetting(serializers.ModelSerializer):
+    class Meta:
+        model = acc_mod.ContactInSettings
+        fields = '__all__'

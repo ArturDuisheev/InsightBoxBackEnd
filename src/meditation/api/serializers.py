@@ -40,9 +40,15 @@ class MeditationSerializer(serializers.ModelSerializer):
 
     def get_duration(self, obj):
         return int(MP3(obj.audio).info.length / 60)
-
-
-
     
+class MetaforicalCard(serializers.ModelSerializer):
+
+    class Meta:
+        model = med_mod.MetaphoricalСards
+        fields = ('id', 'image_card', 'value', 'transcript', 'advice', 'affirmation', 'likes')
 
 
+class ContactSettingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = med_mod.ContactInSettings
+        fields = '__all__'

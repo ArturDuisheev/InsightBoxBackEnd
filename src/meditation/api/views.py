@@ -12,4 +12,7 @@ class MeditationRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIVi
     queryset = med_mod.Meditation.objects.all()
     serializer_class = med_ser.MeditationSerializer
 
+class ContactSettingListAPiView(generics.ListAPIView):
+    queryset = med_mod.ContactInSettings.objects.all()
+    serializer_class = med_ser.ContactSettingSerializer
 

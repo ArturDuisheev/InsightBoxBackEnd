@@ -11,3 +11,4 @@ class ProfileInline(admin.StackedInline):
 @admin.register(acc_mod.EsUser) 
 class NameAdmin(admin.ModelAdmin):
     inlines = [ProfileInline]
+    readonly_fields = ['promocode', ]    

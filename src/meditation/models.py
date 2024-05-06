@@ -3,7 +3,7 @@ from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext_lazy as _
 
-from mutagen.mp3 import MP3
+from account import models as acc_mod
 
 def compress_audio(filename):
     import bz2
@@ -64,3 +64,61 @@ class Meditation(models.Model):
     class Meta:
         verbose_name = _('Медитация')
         verbose_name_plural = _('Медитации')
+
+
+class MetaphoricalСards(models.Model):
+    image_card = models.ImageField(
+        _('Изображение карты'),
+        upload_to='images/metaphorical_cards/'
+    )
+    value = models.TextField(
+        _('Значение')
+    )
+    transcript = models.TextField(
+        _('Расшифровка')
+    )
+    advice = models.TextField(
+        _('Совет')
+    )
+    affirmation = models.TextField(
+        _('Аффермация')
+    )
+    likes = models.OneToOneField(
+        acc_mod.EsUser,
+        related_name='like_user',
+        verbose_name=_('Лайки'),
+        on_delete=models.CASCADE,
+    )
+
+
+    def __str__(self) -> str:
+        return f'Карточка номер: {self.id}'
+    
+    class Meta:
+        verbose_name = _('Метофарическая карта')
+        verbose_name_plural = _('Метофарические карты')
+
+
+class ContactInSettings(models.Model):
+    vk = models.URLField(
+     _('ссылка на соц.сеть Вконтакте')
+    )
+    instagram = models.URLField(
+    _('ссылка на соц.сеть инстаграм')
+    )
+    telegram = models.URLField(
+    _('Телеграм')
+    )
+    yandex_dzen = models.URLField(
+    _('Яндекс дзен')
+    )
+    website = models.URLField(
+    _('Вебсайт')
+    )
+
+    def __str__(self) -> str:
+        return f'Пакет соц.сетей #{self.id}'
+    
+    class Meta:
+        verbose_name = _('Контакт приложения')
+        verbose_name_plural = _('Контакты приложения')

@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from account.api.managers import EsUserManager
+from account.services.promocode import create_promocode
 
 
 class EsUser(AbstractUser, PermissionsMixin):
@@ -32,7 +33,20 @@ class EsUser(AbstractUser, PermissionsMixin):
     is_verified = models.BooleanField(
         default=True
     )
-
+    balance = models.DecimalField(
+        _('Баланс юзера'),
+        max_digits=4,
+        decimal_places=4,
+        default=0
+        )
+    promocode = models.CharField(
+        max_length=10,
+        # editable=False,
+        default=create_promocode(),
+        verbose_name=_('Промокод'),
+        unique=True
+        )
+    
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     
@@ -47,5 +61,6 @@ class EsUser(AbstractUser, PermissionsMixin):
 
     def __str__(self):
         return f'никнейм: {self.username}, id: {self.user_uuid}'
+
 
 
