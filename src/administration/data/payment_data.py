@@ -9,6 +9,8 @@ terminal_password = env('TINKOFF_TERMINAL_PASSWORD')
 
 merchant_token = env('TINKOFF_MERCHANT_TOKEN')
 
+api_url_for_status = f'https://securepay.tinkoff.ru/v2/TinkoffPay/terminals/{terminal_key}/status'
+
 payment_data: dict = {
     'TerminalKey': terminal_key,
     'Password': terminal_password,
