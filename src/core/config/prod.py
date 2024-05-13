@@ -7,7 +7,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG', default=False, cast=bool)
 
 # ALLOWED_HOSTS
-ALLOWED_HOSTS = env('ALLOWED_HOSTS', cast=csv())
+# ALLOWED_HOSTS = env('ALLOWED_HOSTS', cast=csv())
 
 # Database
 DATABASES = {

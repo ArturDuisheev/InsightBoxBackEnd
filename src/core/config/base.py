@@ -7,6 +7,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Production
 PRODUCTION = env("PRODUCTION", default=False, cast=bool)
 
+ALLOWED_HOSTS = ['*']
+
 SECRET_KEY = env("SECRET_KEY")
 
 THEME_PARTY_APPS = [
