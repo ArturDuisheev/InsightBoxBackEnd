@@ -35,8 +35,8 @@ class EsUser(AbstractUser, PermissionsMixin):
     )
     balance = models.DecimalField(
         _('Баланс юзера'),
-        max_digits=4,
-        decimal_places=4,
+        max_digits=12,
+        decimal_places=6,
         default=0
         )
     promocode = models.CharField(
