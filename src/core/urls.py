@@ -4,12 +4,14 @@ from django.conf.urls.static import static
 from django.urls import path, include
 
 from core.drf_yasg import urlpatterns as urls_swagger
+from administration.urls.PaymentUrl import urlpatterns as admin_payment
 
 
 api_v1_patterns = [
     path('profile/', include('profiles.urls')),
     path('meditation/', include('meditation.urls')),
     path('ads/', include('ads.urls')),
+    path('payment/', include(admin_payment)),
 
 ]
 

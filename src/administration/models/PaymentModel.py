@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _ 
 
@@ -17,14 +19,14 @@ class Package(models.Model):
     )
     price = models.DecimalField(
         _('Стоимость'),
-        max_digits=10,
-        decimal_places=2,
+        max_digits=12,
+        decimal_places=6,
         help_text='В рублях ₽'
     )
     sale_price = models.DecimalField(
         _('Стоимость со скидкой'),
-        max_digits=4,
-        decimal_places=3,
+        max_digits=12,
+        decimal_places=6,
         blank=True,
         null=True
     )
@@ -38,10 +40,16 @@ class Package(models.Model):
         verbose_name_plural = _('Добавление пакетов')
 
 class Payment(models.Model):
+    order_id = models.PositiveIntegerField(
+        _('Номер заказа'),
+        primary_key=True,
+        editable=False,
+    )
     user = models.OneToOneField(
         acc_mod.EsUser,
         verbose_name=('Пользователь'),
         on_delete=models.SET_NULL,
+        unique=False,
         related_name='user_payment',
         null=True
     )
@@ -64,20 +72,17 @@ class Payment(models.Model):
     status = models.CharField(
         _('Статус'),
         max_length=120,
-        choices=admin_choice.PayStatus.choices,
-        default=admin_choice.PayStatus.IN_PROCCESING
+        editable=False,
     )
     
     def __str__(self) -> str:
-        return f'Номер оплаты: {self.id}, ID пользователя: {self.user.user_uuid}, сумма оплаты: {self.payment_amount}'  
+        return f'Номер заказа: {self.order_id}, ID пользователя: {self.user.user_uuid}, сумма оплаты: {self.payment_amount}'  
     
     class Meta:
         verbose_name = _('История оплаты')
         verbose_name_plural = verbose_name
 
 
-    
-    
     
 
 
