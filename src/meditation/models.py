@@ -34,7 +34,6 @@ class Meditation(models.Model):
         )],
         blank=True,
         null=True
-
     )
     duration = models.CharField(
         _('Длительность'),
