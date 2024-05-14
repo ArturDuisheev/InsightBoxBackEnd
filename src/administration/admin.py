@@ -10,6 +10,6 @@ class AdministrationAdmin(admin.ModelAdmin):
 admin.site.register(pay_mod.Payment, AdministrationAdmin)
 
 class PackageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price')
+    list_display = ('name', 'price', 'id')
 
 admin.site.register(pay_mod.Package, PackageAdmin)

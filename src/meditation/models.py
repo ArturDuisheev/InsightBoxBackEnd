@@ -69,7 +69,9 @@ class Meditation(models.Model):
 class MetaphoricalСards(models.Model):
     image_card = models.ImageField(
         _('Изображение карты'),
-        upload_to='images/metaphorical_cards/'
+        upload_to='images/metaphorical_cards/',
+        blank=True,
+        null=True
     )
     value = models.TextField(
         _('Значение')
@@ -83,11 +85,12 @@ class MetaphoricalСards(models.Model):
     affirmation = models.TextField(
         _('Аффермация')
     )
-    likes = models.OneToOneField(
+    likes = models.ManyToManyField(
         acc_mod.EsUser,
         related_name='like_user',
         verbose_name=_('Лайки'),
-        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
     )
 
 
