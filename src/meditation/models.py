@@ -5,9 +5,11 @@ from django.utils.translation import gettext_lazy as _
 
 from account import models as acc_mod
 
+
 def compress_audio(filename):
     import bz2
     return bz2.compress(filename, compresslevel=9)
+
 
 class Category(models.Model):
     name = models.CharField(
@@ -18,6 +20,7 @@ class Category(models.Model):
     def __str__(self) -> str:
         return f'Категория: {self.name}'
 
+
 class Meditation(models.Model):
     title = models.CharField(
         _('Название медитации'),
@@ -27,9 +30,11 @@ class Meditation(models.Model):
         _('Запись медитации'),
         upload_to='uploads/meditations/audio/',
         validators=[FileExtensionValidator(
-        allowed_extensions=['mp3', 'ogg', 'aac']
-        )]
-            
+            allowed_extensions=['mp3', 'ogg', 'aac',]
+        )],
+        blank=True,
+        null=True
+
     )
     duration = models.CharField(
         _('Длительность'),
@@ -41,13 +46,20 @@ class Meditation(models.Model):
         _('Премиум?'),
         default=False
     )
+    likes = models.ManyToManyField(
+        acc_mod.EsUser,
+        related_name='meditation_likes',
+        verbose_name=_('Лайки'),
+        blank=True,
+        null=True
+    )
 
     def save(self, *args, **kwargs) -> None:
         if self.audio:
             try:
                 with open(self.audio.path, 'rb') as file:
                     compressed_data = compress_audio(file.read())
-                    
+
                 with open(self.audio.path, 'wb') as file:
                     file.write(compressed_data)
 
@@ -56,11 +68,10 @@ class Meditation(models.Model):
 
         super(Meditation, self).save(*args, **kwargs)
 
-
     def __str__(self):
         is_prem = 'Да' if self.is_premium else 'нет'
         return f'название: {self.title}, премиум? {is_prem}'
-    
+
     class Meta:
         verbose_name = _('Медитация')
         verbose_name_plural = _('Медитации')
@@ -93,10 +104,9 @@ class MetaphoricalСards(models.Model):
         null=True,
     )
 
-
     def __str__(self) -> str:
         return f'Карточка номер: {self.id}'
-    
+
     class Meta:
         verbose_name = _('Метофарическая карта')
         verbose_name_plural = _('Метофарические карты')
@@ -104,24 +114,24 @@ class MetaphoricalСards(models.Model):
 
 class ContactInSettings(models.Model):
     vk = models.URLField(
-     _('ссылка на соц.сеть Вконтакте')
+        _('ссылка на соц.сеть Вконтакте')
     )
     instagram = models.URLField(
-    _('ссылка на соц.сеть инстаграм')
+        _('ссылка на соц.сеть инстаграм')
     )
     telegram = models.URLField(
-    _('Телеграм')
+        _('Телеграм')
     )
     yandex_dzen = models.URLField(
-    _('Яндекс дзен')
+        _('Яндекс дзен')
     )
     website = models.URLField(
-    _('Вебсайт')
+        _('Вебсайт')
     )
 
     def __str__(self) -> str:
         return f'Пакет соц.сетей #{self.id}'
-    
+
     class Meta:
         verbose_name = _('Контакт приложения')
         verbose_name_plural = _('Контакты приложения')

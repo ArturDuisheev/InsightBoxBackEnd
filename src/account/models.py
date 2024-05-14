@@ -46,6 +46,10 @@ class EsUser(AbstractUser, PermissionsMixin):
         verbose_name=_('Промокод'),
         unique=True
         )
+    is_premium = models.BooleanField(
+        _('Премиум?'),
+        default=False
+    )
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']

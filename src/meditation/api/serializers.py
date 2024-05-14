@@ -38,7 +38,7 @@ class MeditationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = med_mod.Meditation
-        fields = ('id', 'title', 'audio', 'duration', 'is_premium')
+        fields = ('id', 'title', 'audio', 'duration', 'is_premium', 'likes')
 
     def get_duration(self, obj):
         return int(MP3(obj.audio).info.length / 60)
