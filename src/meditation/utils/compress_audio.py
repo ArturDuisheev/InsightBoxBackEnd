@@ -1,4 +1,5 @@
 import bz2
 
+
 def compress_audio(filename):
-    pass # TODO: === Из метода save в моделях переместить сюда или использовать сигналы ===
+    return bz2.compress(filename, compresslevel=9)

@@ -4,11 +4,7 @@ from django.core.validators import FileExtensionValidator
 from django.utils.translation import gettext_lazy as _
 
 from account import models as acc_mod
-
-
-def compress_audio(filename):
-    import bz2
-    return bz2.compress(filename, compresslevel=9)
+from meditation.utils.compress_audio import compress_audio
 
 
 class Category(models.Model):
@@ -41,8 +37,16 @@ class Meditation(models.Model):
         blank=True,
         null=True
     )
+    is_bronze = models.BooleanField(
+        _('Бронза?'),
+        default=False
+    )
+    is_silver = models.BooleanField(
+        _('Серебро?'),
+        default=False
+    )
     is_premium = models.BooleanField(
-        _('Премиум?'),
+        _('Золото?'),
         default=False
     )
     likes = models.ManyToManyField(

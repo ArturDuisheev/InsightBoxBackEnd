@@ -41,4 +41,20 @@ payment_data: json = {
 
     }
 }
+
+PAYMENT_STATUS = {
+    "TerminalKey": terminal_key,
+    "PaymentId": 13660,
+    "Token": merchant_token,
+}
+
+RECCURENT_DATA = {
+    "TerminalKey": env('TINKOFF_TERMINAL_KEY'),
+    "PaymentId": 700001702044,
+    "RebillId": "145919",
+    "Token": "f5a3be479324a6d3a4d9efa0d02880b77d04a91758deddcbd9e752a6df97cab5",
+    "IP": "2011:0db8:85a3:0101:0101:8a2e:0370:7334",
+    "SendEmail": True,
+    "InfoEmail": "customer@test.com"
+}
 """END PAYMENT DATA"""

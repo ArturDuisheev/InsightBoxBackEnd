@@ -1,8 +1,8 @@
 
 DJOSER = {
-    'USER_CREATE_PASSWORD_RETYPE': True,
+    'USER_CREATE_PASSWORD_RETYPE': False,
     'SEND_ACTIVATION_EMAIL': True,
-    'SET_PASSWORD_RETYPE': True,
+    'SET_PASSWORD_RETYPE': False,
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'TOKEN_MODEL': None,
     'ACTIVATION_URL':'auth/verify/{uid}/{token}',

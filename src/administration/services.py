@@ -70,3 +70,7 @@ def check_payment_status():
 
 #     logger.debug(f'error creating payment, error: {e}')
 #     return Response(responce.json()['Message']['ErrorCode']['Details'], status=status.HTTP_400_BAD_REQUEST)
+
+
+def reccurent_payment(request: str, amount: int, duration: str) -> str:
+    responce = requests.post(x)
