@@ -15,16 +15,8 @@ class PackageSerializer(serializers.ModelSerializer):
 
 
 class PaymentSerializer(serializers.Serializer):
-    # payment_amount = serializers.ReadOnlyField()
-    # package = PackageSerializer(source='package.id', read_only=True)
     package = serializers.IntegerField()
 
-    # class Meta:
-    #     model = mod_payment.Payment
-    #     fields = (
-    #         'user',
-    #         'payment_amount',
-    #         'package',
-    #         'created_at',
-    #         'status',
-    #     )
+
+class PaymentStatusSerializer(serializers.Serializer):
+    payment_id = serializers.IntegerField()

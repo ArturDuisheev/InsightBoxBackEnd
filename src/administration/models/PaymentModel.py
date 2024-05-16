@@ -42,6 +42,10 @@ class Payment(models.Model):
         primary_key=True,
         editable=False,
     )
+    payment_id = models.PositiveIntegerField(
+        _('Номер платежа'),
+        editable=False,
+    )
     user = models.OneToOneField(
         acc_mod.EsUser,
         verbose_name=('Пользователь'),

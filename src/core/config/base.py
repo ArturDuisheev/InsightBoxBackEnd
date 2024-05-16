@@ -4,10 +4,13 @@ from .helper.env_reader import env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 # Production
 PRODUCTION = env("PRODUCTION", default=False, cast=bool)
 
 ALLOWED_HOSTS = ['*']
+
 
 SECRET_KEY = env("SECRET_KEY")
 
@@ -49,8 +52,8 @@ INSTALLED_APPS = [
 # MIDDLEWARE
 MIDDLEWARE = [
     "django_prometheus.middleware.PrometheusBeforeMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",

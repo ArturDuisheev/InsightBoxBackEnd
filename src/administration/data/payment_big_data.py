@@ -19,7 +19,7 @@ terminal_password = env('TINKOFF_TERMINAL_PASSWORD')
 
 merchant_token = env('TINKOFF_MERCHANT_TOKEN')
 
-api_url_for_status = f'https://securepay.tinkoff.ru/v2/TinkoffPay/terminals/{terminal_key}/status'
+api_url_for_status = f'https://securepay.tinkoff.ru/v2/GetState'
 
 payment_data: json = {
     'TerminalKey': terminal_key,
@@ -42,11 +42,11 @@ payment_data: json = {
     }
 }
 
-PAYMENT_STATUS = {
-    "TerminalKey": terminal_key,
-    "PaymentId": 13660,
-    "Token": merchant_token,
-}
+payment_status_data = {
+            "TerminalKey": terminal_key,
+            "PaymentId": 0,
+            "Token": merchant_token,
+        }
 
 RECCURENT_DATA = {
     "TerminalKey": env('TINKOFF_TERMINAL_KEY'),
