@@ -1,14 +1,10 @@
 import requests
 import logging
-import random
 
 from django.http import JsonResponse
-from django.shortcuts import redirect
 from rest_framework.response import Response
 
-from administration.data.payment_big_data import terminal_key, merchant_token
 from administration.models import PaymentModel as pay_mod
-from administration.data import payment_big_data as pay_var
 from administration.api import serializers as pay_ser
 
 logger = logging.getLogger(__name__)
@@ -34,6 +30,12 @@ class PaymentService:
             'Amount': data['price'],
             'Tax': "vat10",
         })
+        self.payment_data['Receipt'].update({
+            'Email': user.email,
+        })
+        self.payment_data['DATA'].update({
+            'Email': user.email
+        })
 
         response = requests.post(self.api_url, json=self.payment_data)
         response_data = response.json()
@@ -52,8 +54,8 @@ class PaymentService:
                 order_id=self.payment_data['OrderId'],
                 payment_id=response_data['PaymentId'],
                 payment_amount=self.payment_data["Amount"],
-                package=data.get('id'),
-                status='New',
+                package=package,
+                status=response_data['Status'],
             )
 
             user.balance -= self.payment_data["Amount"]
@@ -67,24 +69,6 @@ class PaymentService:
 
     def check_payment_status(self, payment_id, api_status_url, payment_status_data):
         payment_status_data['PaymentId'] = payment_id
-        a = requests.post(api_status_url, json=payment_status_data)
-        print(a.json())
-        return a
-
-
-
-
-# responce = requests.get(pay_var.api_url_for_status)
-# try:
-
-#     if responce.json()['Success'] is True:
-#         return Response(responce.json()['Message'], status=status.HTTP_200_OK)
-
-# except Exception as e:
-
-#     logger.debug(f'error creating payment, error: {e}')
-#     return Response(responce.json()['Message']['ErrorCode']['Details'], status=status.HTTP_400_BAD_REQUEST)
-
-
-# def reccurent_payment(request: str, amount: int, duration: str) -> str:
-#     responce = requests.post(x)
+        status_url = requests.post(api_status_url, json=payment_status_data)
+        print(status_url.json())
+        return status_url

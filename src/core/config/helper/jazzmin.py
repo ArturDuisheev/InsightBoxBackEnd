@@ -1,13 +1,13 @@
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "Etalon Admin panel",
+    "site_title": "InsightBox Admin panel",
 
     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_header": "Etalon Adminisation",
+    "site_header": "InsightBox Adminisation",
 
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_brand": "Etalon Administration",
+    "site_brand": "InsightBox Administration",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
     # "site_logo": "books/img/logo.png",
@@ -28,7 +28,7 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Welcome to the Admin Panel",
 
     # Copyright on the footer
-    "copyright": "Artur copyrigth reserved",
+    "copyright": "Artur copyright reserved",
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string

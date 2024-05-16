@@ -4,7 +4,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from account import models as acc_mod
-from administration.choices import PaymentStatus as admin_choice
 
 
 class Package(models.Model):
@@ -46,11 +45,10 @@ class Payment(models.Model):
         _('Номер платежа'),
         editable=False,
     )
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         acc_mod.EsUser,
-        verbose_name=('Пользователь'),
+        verbose_name=_('Пользователь'),
         on_delete=models.SET_NULL,
-        unique=False,
         related_name='user_payment',
         null=True
     )
