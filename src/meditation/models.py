@@ -26,7 +26,7 @@ class Meditation(models.Model):
         _('Запись медитации'),
         upload_to='uploads/meditations/audio/',
         validators=[FileExtensionValidator(
-            allowed_extensions=['mp3', 'ogg', 'aac',]
+            allowed_extensions=['mp3', 'ogg', 'aac', ]
         )],
         blank=True,
         null=True
@@ -37,18 +37,18 @@ class Meditation(models.Model):
         blank=True,
         null=True
     )
-    is_bronze = models.BooleanField(
-        _('Бронза?'),
-        default=False
-    )
-    is_silver = models.BooleanField(
-        _('Серебро?'),
-        default=False
-    )
-    is_premium = models.BooleanField(
-        _('Золото?'),
-        default=False
-    )
+    # is_bronze = models.BooleanField(
+    #     _('Бронза?'),
+    #     default=False
+    # )
+    # is_silver = models.BooleanField(
+    #     _('Серебро?'),
+    #     default=False
+    # )
+    # is_premium = models.BooleanField(
+    #     _('Золото?'),
+    #     default=False
+    # )
     likes = models.ManyToManyField(
         acc_mod.EsUser,
         related_name='meditation_likes',
@@ -80,14 +80,18 @@ class Meditation(models.Model):
         verbose_name_plural = _('Медитации')
 
 
-class MetaphoricalСards(models.Model):
+class MetaphoricalCard(models.Model):
     image_card = models.ImageField(
         _('Изображение карты'),
         upload_to='images/metaphorical_cards/',
         blank=True,
         null=True
     )
-    value = models.TextField(
+    video = models.FileField(
+        _('Видео'),
+        upload_to='videos/metaphorical_cards/'
+    )
+    meaning = models.TextField(
         _('Значение')
     )
     transcript = models.TextField(
@@ -108,11 +112,42 @@ class MetaphoricalСards(models.Model):
     )
 
     def __str__(self) -> str:
-        return f'Карточка номер: {self.id}'
+        return f'Карта номер: {self.id}'
 
     class Meta:
-        verbose_name = _('Метофарическая карта')
-        verbose_name_plural = _('Метофарические карты')
+        verbose_name = _('Колода метафорических карт')
+        verbose_name_plural = verbose_name
+
+
+class MoneyMetaphoricalCard(models.Model):
+    image = models.ImageField(
+        _('Фото'),
+        upload_to='images/money_cards/'
+    )
+
+    title = models.CharField(
+        _('Заголовок'),
+        max_length=120
+    )
+    description = models.TextField(
+        _('Содержание')
+    )
+    meaning = models.TextField(
+        _('Значение')
+    )
+    advice = models.TextField(
+        _('Совет')
+    )
+    affirmation = models.TextField(
+        _('Аффермация')
+    )
+
+    def __str__(self):
+        return f'Денежная карта номер: {self.id}'
+
+    class Meta:
+        verbose_name = _('Денежная колода метафорических карт')
+        verbose_name_plural = verbose_name
 
 
 class ContactInSettings(models.Model):

@@ -72,3 +72,11 @@ class PaymentService:
         status_url = requests.post(api_status_url, json=payment_status_data)
         print(status_url.json())
         return status_url
+
+    def reccurent_payment(self, request, api_rec_url, amount, product):
+        user = request.user
+        self.api_url = api_rec_url
+
+
+
+

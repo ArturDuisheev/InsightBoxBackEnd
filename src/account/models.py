@@ -4,7 +4,6 @@ from django.db import models
 
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
-from phonenumber_field.modelfields import PhoneNumberField
 
 from account.api.managers import EsUserManager
 from account.services.promocode import create_promocode
@@ -74,6 +73,10 @@ class EsUser(AbstractUser, PermissionsMixin):
     )
     is_premium = models.BooleanField(
         _('Премиум?'),
+        default=False
+    )
+    is_purchased_money_metaphorical_cards = models.BooleanField(
+        _('Оплата за метафорические карты'),
         default=False
     )
 

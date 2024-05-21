@@ -35,9 +35,14 @@ class ContactSettingListAPiView(generics.ListAPIView):
     serializer_class = med_ser.ContactSettingSerializer
 
 
-class MetaforicalCardListCreateAPIVew(generics.ListCreateAPIView):
-    queryset = med_mod.MetaphoricalСards.objects.all()
+class MetaforicalCardListAPIVew(generics.ListAPIView):
+    queryset = med_mod.MetaphoricalCard.objects.all()
     serializer_class = med_ser.MetaforicalCardSerializer
+
+
+class MoneyMetaphoricalCardListAPIView(generics.ListAPIView):
+    queryset = med_mod.MoneyMetaphoricalCard.objects.all()
+    serializer_class = med_ser.MoneyMetaphoricalCardSerializer
 
 
 class MetaforicalCardLikeAPIView(APIView):

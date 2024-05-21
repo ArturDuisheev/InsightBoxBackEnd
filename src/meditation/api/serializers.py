@@ -38,7 +38,7 @@ class MeditationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = med_mod.Meditation
-        fields = ('id', 'title', 'audio', 'duration', 'is_premium', 'is_bronze', 'is_silver', 'likes')
+        fields = ('id', 'title', 'audio', 'duration', 'likes')
 
     def get_duration(self, obj):
         return int(MP3(obj.audio).info.length / 60)
@@ -46,8 +46,14 @@ class MeditationSerializer(serializers.ModelSerializer):
 
 class MetaforicalCardSerializer(serializers.ModelSerializer):
     class Meta:
-        model = med_mod.MetaphoricalСards
-        fields = ('id', 'image_card', 'value', 'transcript', 'advice', 'affirmation', 'likes')
+        model = med_mod.MetaphoricalCard
+        fields = ('id', 'image_card', 'meaning', 'transcript', 'advice', 'affirmation', 'likes')
+
+
+class MoneyMetaphoricalCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = med_mod.MoneyMetaphoricalCard
+        fields = ('id', 'image', 'title', 'description', 'meaning', 'advice', 'affirmation')
 
 
 class ContactSettingSerializer(serializers.ModelSerializer):
