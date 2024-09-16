@@ -6,12 +6,9 @@ from rest_framework import serializers
 from core.config.helper.env_reader import env
 
 from administration.models.PaymentModel import Package, Payment
-from administration.api.serializers import PackageSerializer
-
-serializer = PackageSerializer()
 
 """BEGIN PAYMENT DATA"""
-api_url: str = 'https://securepay.tinkoff.ru/v2/Init'  #TODO: поместить в .env
+api_url: str = env('API_URL')
 
 terminal_key = env('TINKOFF_TERMINAL_KEY')
 
